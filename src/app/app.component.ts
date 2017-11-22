@@ -1,6 +1,7 @@
 import { Component, OnInit, AfterContentInit } from '@angular/core';
 import {FixtureService} from './fixture.service';
 import {HttpClient, HttpHeaders, HttpParams} from '@angular/common/http';
+import { Fixture } from './fixture';
 
 @Component({
   selector: 'app-root',
@@ -19,6 +20,7 @@ export class AppComponent implements OnInit, AfterContentInit {
   private fixtureJsonObj;
   private fixtureJsonArrPartOne;
   private fixtureJsonArrPartTwo;
+  fixtureArr = [];
 
   constructor( private fixtureService: FixtureService, private http: HttpClient) {
 
@@ -58,8 +60,19 @@ export class AppComponent implements OnInit, AfterContentInit {
     this.fixtureService.getNextFixtures( filter ).subscribe(
       data => {
         this.fixtureJsonObj = data;
-        this.fixtureJsonArrPartOne = this.fixtureJsonObj.fixtures.splice(4, 5);
-        this.fixtureJsonArrPartTwo = this.fixtureJsonObj.fixtures.splice(0, 5);
+
+        this.fixtureJsonObj.fixtures.map(jsonData => {
+          const f = new Fixture();
+          f.homeTeamName = jsonData.homeTeamName;
+          f.awayTeamName = jsonData.awayTeamName;
+          this.fixtureArr.push(f);
+        });
+
+        console.log( 'higuy' );
+        console.log( this.fixtureArr);
+
+        this.fixtureJsonArrPartOne = this.fixtureArr.splice(4, 5);
+        this.fixtureJsonArrPartTwo = this.fixtureArr.splice(0, 5);
       });
   }
 
