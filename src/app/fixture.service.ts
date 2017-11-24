@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Fixture } from './fixture';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import 'rxjs/add/operator/map';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class FixtureService {
@@ -37,6 +37,19 @@ export class FixtureService {
       {
         headers: this.headers
       }
+    ).map(data => <any[]>data);
+  }
+
+  getNextFixturesTwo(filter: string): Observable<any[]> {
+    return Observable.forkJoin(
+      this.http.get('http://api.football-data.org/v1/competitions/445/fixtures?' + filter,
+        {
+          headers: this.headers
+        }
+      ),
+      this.http.get('http://api.football-data.org/v1/competitions/445/teams',
+        {headers: this.headers }
+      )
     ).map(data => <any[]>data);
   }
 

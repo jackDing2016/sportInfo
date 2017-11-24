@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
 
   private teamInfoJsonArr;
   private teamTableJsonObj;
+  private teamJsonObj;
 
   private fixtureJsonObj;
   private fixtureJsonArrPartOne;
@@ -50,16 +51,44 @@ export class HomeComponent implements OnInit {
           this.fixtureArr.push(f);
         });
 
-        console.log( 'higuy' );
-        console.log( this.fixtureArr);
-
         this.fixtureJsonArrPartOne = this.fixtureArr.splice(4, 5);
         this.fixtureJsonArrPartTwo = this.fixtureArr.splice(0, 5);
       });
   }
 
+  getNextFixtureTwo(filter: string) {
+
+    this.fixtureService.getNextFixturesTwo( filter ).subscribe(
+      data => {
+
+        this.fixtureJsonObj = data[0];
+        this.teamJsonObj = data[1];
+        this.fixtureJsonObj.fixtures.map(jsonData => {
+          const f = new Fixture();
+          f.homeTeamName = jsonData.homeTeamName;
+          f.awayTeamName = jsonData.awayTeamName;
+          this.fixtureArr.push(f);
+        });
+
+        for ( let i = 0; i < this.fixtureArr.length; i++) {
+
+          for ( let j = 0; j < this.teamJsonObj.teams.length; j++ ) {
+            if (this.fixtureArr[i].homeTeamName === this.teamJsonObj.teams[j].name) {
+              this.fixtureArr[i].homeTeamImg =  this.teamJsonObj.teams[j].crestUrl;
+            }
+            if (this.fixtureArr[i].awayTeamName === this.teamJsonObj.teams[j].name) {
+              this.fixtureArr[i].awayTeamImg =  this.teamJsonObj.teams[j].crestUrl;
+            }
+          }
+        }
+        this.fixtureJsonArrPartOne = this.fixtureArr.splice(4, 5);
+        this.fixtureJsonArrPartTwo = this.fixtureArr.splice(0, 5);
+      });
+  }
+
+
   ngOnInit () {
-    this.getNextFixture('timeFrame=n6');
+    this.getNextFixtureTwo('timeFrame=n3');
     this.getTeamTable();
   }
 

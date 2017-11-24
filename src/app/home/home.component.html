@@ -534,14 +534,14 @@
                       <!--</li>-->
                       <!--</ul>-->
 
-                      <ul *ngFor="let fixture1 of fixtureJsonArrPartOne">
+                      <ul *ngFor="let fixture of fixtureJsonArrPartOne">
                         <li>
-                          <img src="{{ fixture1.homeTeamImageUrl }}" alt="">
-                          <span>{{ fixture1.homeTeamName }}</span>
+                          <img src="{{ fixture.homeTeamImg }}" style="width: 28px; height: 32px" alt="">
+                          <span>{{ fixture.homeTeamName }}</span>
                         </li>
                         <li>
-                          <img src="{{ fixture1.awayTeamImageUrl }}" alt="">
-                          <span>{{ fixture1.awayTeamName }}</span>
+                          <img src="{{ fixture.awayTeamImg }}" style="width: 28px; height: 32px" alt="">
+                          <span>{{ fixture.awayTeamName }}</span>
                         </li>
                       </ul>
 
@@ -560,14 +560,14 @@
                       <!--<span>Germany</span>-->
                       <!--</li>-->
                       <!--</ul>-->
-                      <ul *ngFor="let fixture1 of fixtureJsonArrPartTwo">
+                      <ul *ngFor="let fixture of fixtureJsonArrPartTwo">
                         <li>
-                          <img src="{{ fixture1.homeTeamImageUrl }}" alt="">
-                          <span>{{ fixture1.homeTeamName }}</span>
+                          <img src="{{ fixture.homeTeamImg }}" style="width: 28px; height: 32px" alt="">
+                          <span>{{ fixture.homeTeamName }}</span>
                         </li>
                         <li>
-                          <img src="{{ fixture1.awayTeamImageUrl }}" alt="">
-                          <span>{{ fixture1.awayTeamName }}</span>
+                          <img src="{{ fixture.awayTeamImg }}" style="width: 28px; height: 32px" alt="">
+                          <span>{{ fixture.awayTeamName }}</span>
                         </li>
                       </ul>
                     </div>

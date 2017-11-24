@@ -8,12 +8,14 @@ import {FixtureService} from './fixture.service';
 import { AppRoutingModule } from './app-routing.module';
 import { FixtureComponent } from './fixture/fixture.component';
 import { HomeComponent } from './home/home.component';
+import { TeamComponent } from './team/team.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     FixtureComponent,
-    HomeComponent
+    HomeComponent,
+    TeamComponent
   ],
   imports: [
     BrowserModule,
