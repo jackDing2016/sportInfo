@@ -27,7 +27,6 @@
         "css/font-awesome.min.css",
         "css/icomoon.css",
         "css/normalize.css",
-        "css/responsive.css",
         "css/transition.css"
       ],
       "scripts": [
