@@ -68,6 +68,7 @@ export class FixtureComponent implements OnInit {
     // this.getNextFixture('timeFrame=n3');
     this.getNextFixtureTwo('timeFrame=n3');
     console.log('just test');
+    console.log('just test2');
   }
 
 }
